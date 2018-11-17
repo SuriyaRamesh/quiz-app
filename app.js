@@ -1,12 +1,26 @@
 function populate() {
     if(quiz.isEnded()) {
-        //show score
+        showScore();
     }
     else {
         //show question
         var element = document.getElementById("question");
         element.innerHTML = quiz.getCurrentIndex().text;
+
+        //show choices
+        var choices = quiz.getCurrentIndex().choices;
+        for(var i=0; i<choices.length; i++) {
+            var element = document.getElementById("choice"+i);
+            element.innerHTML = choices[i];
+        }
     }
+}
+
+function showScore() {
+    var gameOverHtml = "<h1>Result</h1>";
+    gameOverHtml += "<h2 id='score'>Your score :"+quiz.score+ " </h2>"
+    var element = document.getElementById("quiz");
+    element.innerHTML = gameOverHtml;
 }
 
 var questions = [

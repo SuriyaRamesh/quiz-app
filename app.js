@@ -12,8 +12,24 @@ function populate() {
         for(var i=0; i<choices.length; i++) {
             var element = document.getElementById("choice"+i);
             element.innerHTML = choices[i];
+            guess("btn"+i, choices[i]);
         }
+        showProgress();
     }
+}
+
+function guess(id, userChoice) {
+    var button = document.getElementById(id);
+    button.onclick = function() {
+        quiz.guess(userChoice);
+        populate();
+    }
+}
+
+function showProgress() {
+    var currentQuestionIndex = quiz.questionIndex + 1;
+    var element = document.getElementById("progress");
+    element.innerHTML = "Question "+currentQuestionIndex+" of "+quiz.questions.length+" .";
 }
 
 function showScore() {
